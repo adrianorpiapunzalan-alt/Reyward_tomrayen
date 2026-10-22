@@ -7,18 +7,18 @@
   <title>Reyward Tomrayen | IT Portfolio</title>
 
   <style>
-    /* ================= ROYAL PURPLE THEME ================= */
+    /* ================= BASIC ROYAL PURPLE THEME ================= */
     :root {
-      --bg: #0a0514; /* Very dark purple/black */
-      --surface: rgba(20, 10, 35, 0.7); 
+      --bg: #0a0514; 
+      --surface: rgba(20, 10, 35, 0.8); 
       --text: #edf2ff;
       --muted: #a899bf;
-      --accent: #b026ff; /* Bright Purple */
+      --accent: #b026ff; 
       --accent-dim: rgba(176, 38, 255, 0.2);
       --border: rgba(176, 38, 255, 0.3);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     
     body {
@@ -29,12 +29,10 @@
       overflow-x: hidden;
     }
 
-    /* Canvas for Particles */
+    /* Particle Canvas */
     #particle-canvas {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; pointer-events: none;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -43,37 +41,14 @@
     .wrap { width: min(1300px, calc(100% - 40px)); margin: auto; }
     .wrap-narrow { width: min(1100px, calc(100% - 40px)); margin: auto; }
 
-    /* ================= STANDARD CURSOR ================= */
-    .cursor {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent);
-    }
-    .cursor-follower {
-      width: 36px; height: 36px;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s, height 0.3s, background 0.3s, transform 0.1s;
-      box-shadow: 0 0 15px rgba(176, 38, 255, 0.2);
-    }
-
     /* ================= SCROLL ANIMATIONS ================= */
-    .hidden-el { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    .hidden-el { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .show-el { opacity: 1; transform: translateY(0); }
 
     /* ================= HEADER ================= */
     header {
       position: fixed; width: 100%; top: 0; z-index: 10;
-      background: rgba(10, 5, 20, 0.8); backdrop-filter: blur(10px);
+      background: rgba(10, 5, 20, 0.9); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     nav { height: 75px; display: flex; align-items: center; justify-content: space-between; }
@@ -81,7 +56,7 @@
     .brand span { color: var(--accent); }
     .navlinks { display: flex; gap: 30px; }
     .navlinks a { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); transition: all 0.3s; }
-    .navlinks a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+    .navlinks a:hover { color: var(--accent); }
 
     /* ================= HERO ================= */
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 75px; }
@@ -90,76 +65,42 @@
     .hero p { color: var(--muted); font-size: 1.2rem; max-width: 600px; margin-bottom: 35px; }
     .actions { display: flex; gap: 15px; flex-wrap: wrap; }
     .btn { display: inline-block; padding: 16px 32px; border-radius: 4px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; border: 1px solid var(--border); }
-    .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 15px var(--accent-dim); }
-    .btn.primary:hover { box-shadow: 0 0 40px var(--accent); transform: translateY(-3px); }
+    .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn.primary:hover { box-shadow: 0 0 20px var(--accent); transform: translateY(-3px); }
     .btn.secondary { background: transparent; color: #fff; }
-    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ================= NEW TECH-RING PFP ================= */
+    /* ================= TECH-RING PFP ================= */
     .pfp-ring-container {
-      position: relative;
-      width: 320px;
-      height: 320px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: relative; width: 320px; height: 320px; margin: 0 auto;
+      display: flex; justify-content: center; align-items: center;
     }
-
-    /* The rotating outer dashed ring */
     .pfp-ring-outer {
-      position: absolute;
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      border: 2px dashed var(--accent);
-      animation: spin 20s linear infinite;
-      opacity: 0.5;
+      position: absolute; width: 100%; height: 100%;
+      border-radius: 50%; border: 2px dashed var(--accent);
+      animation: spin 20s linear infinite; opacity: 0.5;
     }
-
-    /* The rotating inner solid ring */
     .pfp-ring-inner {
-      position: absolute;
-      width: 90%; height: 90%;
-      border-radius: 50%;
-      border: 1px solid var(--border);
+      position: absolute; width: 90%; height: 90%;
+      border-radius: 50%; border: 1px solid var(--border);
       border-top: 4px solid var(--accent);
       animation: spin-reverse 10s linear infinite;
     }
-
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
 
-    /* The actual photo container with solid background */
     .pfp-photo-box {
-      position: relative;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: #0a0514; /* Solid dark background */
-      border: 4px solid var(--accent);
-      box-shadow: 0 0 30px var(--accent-dim);
-      overflow: hidden;
-      z-index: 2;
+      position: relative; width: 260px; height: 260px;
+      border-radius: 50%; background: #0a0514; 
+      border: 4px solid var(--accent); box-shadow: 0 0 30px var(--accent-dim);
+      overflow: hidden; z-index: 2;
     }
-
-    .pfp-photo-box img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .pfp-photo-box:hover img {
-      transform: scale(1.1);
-    }
-
-    /* Floating glowing dots around the ring */
+    .pfp-photo-box img { width: 100%; height: 100%; object-fit: cover; }
+    
     .pfp-dot {
-      position: absolute;
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent);
-      z-index: 3;
+      position: absolute; width: 10px; height: 10px;
+      background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent); z-index: 3;
     }
     .dot-1 { top: -5px; left: 50%; transform: translateX(-50%); }
     .dot-2 { bottom: -5px; left: 50%; transform: translateX(-50%); }
@@ -169,19 +110,15 @@
     /* ================= TECH CARDS ================= */
     section { padding: 100px 0; }
     .section-head { margin-bottom: 40px; text-align: left; }
-    .section-head h2 { font-size: 3rem; color: #fff; text-transform: uppercase; font-weight: 900; letter-spacing: -1px;}
+    .section-head h2 { font-size: 3rem; color: #fff; text-transform: uppercase; font-weight: 900; }
     .section-head p { color: var(--muted); margin-top: 10px; font-size: 1.1rem;}
 
-    .about-grid, .skills-grid, .project-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;
-    }
+    .about-grid, .skills-grid, .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
 
     .tech-card {
-      background: var(--surface); backdrop-filter: blur(10px); padding: 35px; position: relative; transition: all 0.3s;
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 8px;
+      background: var(--surface); padding: 35px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.3s;
     }
-    .tech-card:hover { background-color: rgba(176, 38, 255, 0.05); box-shadow: 0 0 20px rgba(176, 38, 255, 0.1); transform: translateY(-3px); }
+    .tech-card:hover { background: rgba(176, 38, 255, 0.05); border-color: var(--accent); }
     .tech-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--accent); text-transform: uppercase;}
     .tech-card p { color: var(--muted); font-size: 1.05rem;}
     
@@ -189,33 +126,25 @@
     .pill { background: rgba(176, 38, 255, 0.1); color: var(--accent); padding: 6px 14px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); border-radius: 4px; }
 
     /* ================= CERTIFICATES (GRID) ================= */
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-    
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
     .cert-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 15px; transition: all 0.4s ease;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 15px; transition: all 0.3s;
     }
-    .cert-card:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 10px 30px rgba(176, 38, 255, 0.2); border-color: var(--accent); z-index: 2; }
+    .cert-card:hover { transform: translateY(-5px); border-color: var(--accent); }
     .cert-card h3 { font-size: 1rem; color: var(--accent); text-align: center; letter-spacing: 2px; text-transform: uppercase; font-weight: 900; }
-    .cert-preview { width: 100%; height: 200px; object-fit: cover; object-position: top; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
+    .cert-preview { width: 100%; height: 200px; object-fit: cover; object-position: top; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
     
     .cert-actions { display: flex; gap: 10px; margin-top: auto; }
-    .cert-actions a { flex: 1; text-align: center; font-size: 0.8rem; padding: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; background: transparent; border: 1px solid var(--border); color: var(--text); transition: all 0.3s; border-radius: 4px;}
+    .cert-actions a { flex: 1; text-align: center; font-size: 0.8rem; padding: 10px; font-weight: 800; text-transform: uppercase; background: transparent; border: 1px solid var(--border); color: var(--text); border-radius: 4px; transition: all 0.3s; }
     .cert-actions a:hover { background: var(--accent); color: #fff; }
     .cert-actions a.download { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
-    .cert-actions a.download:hover { background: var(--accent); color: #fff; }
 
     /* ================= RESUME & CONTACT ================= */
-    .resume-band { background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; box-shadow: inset 0 0 20px var(--accent-dim); }
+    .resume-band { background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 900px) {
-      * { cursor: auto; } 
-      .cursor, .cursor-follower { display: none; }
       .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 120px; }
       .hero .actions { justify-content: center; }
       .hero p { margin: 0 auto 35px auto; }
@@ -234,10 +163,6 @@
 
   <!-- INTERACTIVE BACKGROUND CANVAS -->
   <canvas id="particle-canvas"></canvas>
-
-  <!-- STANDARD CURSOR -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
 
   <header>
     <div class="wrap">
@@ -269,7 +194,7 @@
       </div>
       
       <div class="hidden-el">
-        <!-- NEW TECH-RING PFP -->
+        <!-- TECH-RING PFP -->
         <div class="pfp-ring-container">
           <div class="pfp-ring-outer"></div>
           <div class="pfp-ring-inner"></div>
@@ -279,8 +204,8 @@
           <div class="pfp-dot dot-4"></div>
           
           <div class="pfp-photo-box">
-            <!-- ENSURE HIS PHOTO IS NAMED reyward.jpg -->
-            <img src="reyward.jpg" alt="Reyward Tomrayen" />
+            <!-- ENSURE THE IMAGE IS NAMED pfp.png -->
+            <img src="pfp.png" alt="Reyward Tomrayen" />
           </div>
         </div>
       </div>
@@ -381,6 +306,16 @@
             <p>A web-based interface mockup that allows students to view their grades, schedules, and announcements in a single, easy-to-navigate dashboard.</p>
             <div class="pillrow"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">UI Design</span></div>
           </article>
+          <article class="tech-card hidden-el">
+            <h3>Basic LAN Network Setup</h3>
+            <p>Designed and configured a small Local Area Network (LAN) for a mock office environment, including cable crimping, router configuration, and IP addressing.</p>
+            <div class="pillrow"><span class="pill">Networking</span><span class="pill">Cabling</span><span class="pill">Router Config</span></div>
+          </article>
+          <article class="tech-card hidden-el">
+            <h3>Hardware Diagnostics & Repair</h3>
+            <p>Performed basic hardware troubleshooting on multiple desktop units, identifying faulty RAM and storage drives, and performing successful operating system reinstalls.</p>
+            <div class="pillrow"><span class="pill">Hardware</span><span class="pill">Troubleshooting</span><span class="pill">OS Installation</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -391,75 +326,108 @@
         <div class="section-head hidden-el">
           <div class="eyebrow">Professional Development</div>
           <h2>Certificates</h2>
-          <p>Hover over a certificate to view or download.</p>
         </div>
 
         <div class="cert-grid">
           
+          <!-- TESDA -->
           <article class="cert-card hidden-el">
-            <h3>Certificate Title 1</h3>
-            <a href="1.jpg" target="_blank">
-              <img class="cert-preview" src="1.jpg" alt="Certificate 1" />
-            </a>
-            <div class="cert-actions">
-              <a href="1.jpg" target="_blank">View</a>
-              <a href="1.jpg" download="Certificate-1.jpg" class="download">Save</a>
-            </div>
+            <h3>TESDA</h3>
+            <a href="1.jpg" target="_blank"><img class="cert-preview" src="1.jpg" alt="TESDA 1" /></a>
+            <div class="cert-actions"><a href="1.jpg" target="_blank">View</a><a href="1.jpg" download="TESDA-1.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>TESDA</h3>
+            <a href="2.jpg" target="_blank"><img class="cert-preview" src="2.jpg" alt="TESDA 2" /></a>
+            <div class="cert-actions"><a href="2.jpg" target="_blank">View</a><a href="2.jpg" download="TESDA-2.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>TESDA</h3>
+            <a href="3.jpg" target="_blank"><img class="cert-preview" src="3.jpg" alt="TESDA 3" /></a>
+            <div class="cert-actions"><a href="3.jpg" target="_blank">View</a><a href="3.jpg" download="TESDA-3.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>TESDA</h3>
+            <a href="4.jpg" target="_blank"><img class="cert-preview" src="4.jpg" alt="TESDA 4" /></a>
+            <div class="cert-actions"><a href="4.jpg" target="_blank">View</a><a href="4.jpg" download="TESDA-4.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>TESDA</h3>
+            <a href="5.jpg" target="_blank"><img class="cert-preview" src="5.jpg" alt="TESDA 5" /></a>
+            <div class="cert-actions"><a href="5.jpg" target="_blank">View</a><a href="5.jpg" download="TESDA-5.jpg" class="download">Save</a></div>
           </article>
 
+          <!-- DICT -->
           <article class="cert-card hidden-el">
-            <h3>Certificate Title 2</h3>
-            <a href="2.jpg" target="_blank">
-              <img class="cert-preview" src="2.jpg" alt="Certificate 2" />
-            </a>
-            <div class="cert-actions">
-              <a href="2.jpg" target="_blank">View</a>
-              <a href="2.jpg" download="Certificate-2.jpg" class="download">Save</a>
-            </div>
+            <h3>DICT</h3>
+            <a href="dict1.jpg" target="_blank"><img class="cert-preview" src="dict1.jpg" alt="DICT 1" /></a>
+            <div class="cert-actions"><a href="dict1.jpg" target="_blank">View</a><a href="dict1.jpg" download="DICT-1.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>DICT</h3>
+            <a href="dict2.jpg" target="_blank"><img class="cert-preview" src="dict2.jpg" alt="DICT 2" /></a>
+            <div class="cert-actions"><a href="dict2.jpg" target="_blank">View</a><a href="dict2.jpg" download="DICT-2.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>DICT</h3>
+            <a href="dict3.jpg" target="_blank"><img class="cert-preview" src="dict3.jpg" alt="DICT 3" /></a>
+            <div class="cert-actions"><a href="dict3.jpg" target="_blank">View</a><a href="dict3.jpg" download="DICT-3.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>DICT</h3>
+            <a href="dict4.jpg" target="_blank"><img class="cert-preview" src="dict4.jpg" alt="DICT 4" /></a>
+            <div class="cert-actions"><a href="dict4.jpg" target="_blank">View</a><a href="dict4.jpg" download="DICT-4.jpg" class="download">Save</a></div>
           </article>
 
+          <!-- MICROSOFT -->
           <article class="cert-card hidden-el">
-            <h3>Certificate Title 3</h3>
-            <a href="3.jpg" target="_blank">
-              <img class="cert-preview" src="3.jpg" alt="Certificate 3" />
-            </a>
-            <div class="cert-actions">
-              <a href="3.jpg" target="_blank">View</a>
-              <a href="3.jpg" download="Certificate-3.jpg" class="download">Save</a>
-            </div>
+            <h3>Microsoft</h3>
+            <a href="m1.jpg" target="_blank"><img class="cert-preview" src="m1.jpg" alt="Microsoft 1" /></a>
+            <div class="cert-actions"><a href="m1.jpg" target="_blank">View</a><a href="m1.jpg" download="Microsoft-1.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Microsoft</h3>
+            <a href="m2.jpg" target="_blank"><img class="cert-preview" src="m2.jpg" alt="Microsoft 2" /></a>
+            <div class="cert-actions"><a href="m2.jpg" target="_blank">View</a><a href="m2.jpg" download="Microsoft-2.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Microsoft</h3>
+            <a href="m3.jpg" target="_blank"><img class="cert-preview" src="m3.jpg" alt="Microsoft 3" /></a>
+            <div class="cert-actions"><a href="m3.jpg" target="_blank">View</a><a href="m3.jpg" download="Microsoft-3.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Microsoft</h3>
+            <a href="m4.jpg" target="_blank"><img class="cert-preview" src="m4.jpg" alt="Microsoft 4" /></a>
+            <div class="cert-actions"><a href="m4.jpg" target="_blank">View</a><a href="m4.jpg" download="Microsoft-4.jpg" class="download">Save</a></div>
           </article>
 
+          <!-- NORTHEASTERN COLLEGE -->
           <article class="cert-card hidden-el">
-            <h3>Certificate Title 4</h3>
-            <a href="4.jpg" target="_blank">
-              <img class="cert-preview" src="4.jpg" alt="Certificate 4" />
-            </a>
-            <div class="cert-actions">
-              <a href="4.jpg" target="_blank">View</a>
-              <a href="4.jpg" download="Certificate-4.jpg" class="download">Save</a>
-            </div>
+            <h3>Northeastern College</h3>
+            <a href="nc1.jpg" target="_blank"><img class="cert-preview" src="nc1.jpg" alt="Northeastern College 1" /></a>
+            <div class="cert-actions"><a href="nc1.jpg" target="_blank">View</a><a href="nc1.jpg" download="Northeastern-1.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Northeastern College</h3>
+            <a href="nc2.jpg" target="_blank"><img class="cert-preview" src="nc2.jpg" alt="Northeastern College 2" /></a>
+            <div class="cert-actions"><a href="nc2.jpg" target="_blank">View</a><a href="nc2.jpg" download="Northeastern-2.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Northeastern College</h3>
+            <a href="nc3.jpg" target="_blank"><img class="cert-preview" src="nc3.jpg" alt="Northeastern College 3" /></a>
+            <div class="cert-actions"><a href="nc3.jpg" target="_blank">View</a><a href="nc3.jpg" download="Northeastern-3.jpg" class="download">Save</a></div>
+          </article>
+          <article class="cert-card hidden-el">
+            <h3>Northeastern College</h3>
+            <a href="nc4.jpg" target="_blank"><img class="cert-preview" src="nc4.jpg" alt="Northeastern College 4" /></a>
+            <div class="cert-actions"><a href="nc4.jpg" target="_blank">View</a><a href="nc4.jpg" download="Northeastern-4.jpg" class="download">Save</a></div>
           </article>
 
+          <!-- NETACAD -->
           <article class="cert-card hidden-el">
-            <h3>Certificate Title 5</h3>
-            <a href="5.jpg" target="_blank">
-              <img class="cert-preview" src="5.jpg" alt="Certificate 5" />
-            </a>
-            <div class="cert-actions">
-              <a href="5.jpg" target="_blank">View</a>
-              <a href="5.jpg" download="Certificate-5.jpg" class="download">Save</a>
-            </div>
-          </article>
-
-          <article class="cert-card hidden-el">
-            <h3>Certificate Title 6</h3>
-            <a href="6.jpg" target="_blank">
-              <img class="cert-preview" src="6.jpg" alt="Certificate 6" />
-            </a>
-            <div class="cert-actions">
-              <a href="6.jpg" target="_blank">View</a>
-              <a href="6.jpg" download="Certificate-6.jpg" class="download">Save</a>
-            </div>
+            <h3>NetAcad</h3>
+            <a href="net1.jpg" target="_blank"><img class="cert-preview" src="net1.jpg" alt="NetAcad" /></a>
+            <div class="cert-actions"><a href="net1.jpg" target="_blank">View</a><a href="net1.jpg" download="NetAcad.jpg" class="download">Save</a></div>
           </article>
 
         </div>
@@ -474,8 +442,8 @@
             <h2>Download my resume</h2>
             <p>My resume is available for viewing and download.</p>
           </div>
-          <!-- ENSURE RESUME IS NAMED resume.pdf -->
-          <a class="btn primary" href="resume.pdf" download="Reyward-Tomrayen-Resume.pdf">Download Resume</a>
+          <!-- EXACT FILENAME: resumer.pdf -->
+          <a class="btn primary" href="resumer.pdf" download="Reyward-Tomrayen-Resume.pdf">Download Resume</a>
         </div>
       </div>
     </section>
@@ -516,33 +484,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.hidden-el').forEach((el) => observer.observe(el));
 
-    // 2. Custom Cursor
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      setTimeout(() => {
-        follower.style.left = e.clientX + 'px';
-        follower.style.top = e.clientY + 'px';
-      }, 50);
-    });
-
-    document.querySelectorAll('a, button, .tech-card, .cert-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        follower.style.width = '50px';
-        follower.style.height = '50px';
-        follower.style.background = 'rgba(176, 38, 255, 0.1)';
-      });
-      el.addEventListener('mouseleave', () => {
-        follower.style.width = '36px';
-        follower.style.height = '36px';
-        follower.style.background = 'transparent';
-      });
-    });
-
-    // 3. Interactive Particle Background
+    // 2. Interactive Particle Background (Purple)
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray;
